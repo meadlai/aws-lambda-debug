@@ -8,7 +8,7 @@
 
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html
 
-    主要是安装Python3, AWS CLI 2, AWS SAM, Docker desktop
+主要是安装Python3, AWS CLI 2, AWS SAM, Docker desktop
 
 
 
@@ -16,23 +16,31 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html
 
-            aws configure
-
-            aws configure list
-
+```
+    aws configure
+    aws configure list
+```
 
 
 ### VSCode 开发环境
 
 主要参考文章: https://github.com/aws/aws-toolkit-vscode/blob/master/docs/debugging-python-lambda-functions.md
 
+  ```bash
   cd ${project_root}
+  ```
 
  - 初始化虚拟环境
+  
+  ```bash
   python3 -m venv ./.venv
+  ```
 
  - 激活虚拟环境
+ 
+ ```bash
 . ./.venv/bin/activate
+```
 
  - 其中的requirements.txt,添加了最新版本的ptvsd, 发现ptvsd==4.2.4其实是有问题的,最新版本是4.3.2
 
@@ -45,11 +53,15 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 
  - 编译项目,每次修改代码,都要手动执行编译,不然断点位置不对
 
+```bash
     sam build
+```
 
  - 启动项目,开启debug端口5678,等待连接
 
+```bash
     sam local invoke -e events/event.json HelloWorldFunction -d 5678
+```
 
  - 按F5进行编译,代码将停止在断点位置.
 
