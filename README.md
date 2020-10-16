@@ -4,13 +4,17 @@
 
 然后换了VSCode 
 
-** 环境准备: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html
+### 环境准备
+
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html
 
     主要是安装Python3, AWS CLI 2, AWS SAM, Docker desktop
 
 
 
-** 配置账号: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html
+### 配置账号
+
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html
 
             aws configure
 
@@ -18,29 +22,37 @@
 
 
 
-** VSCode 开发环境主要参考文章: https://github.com/aws/aws-toolkit-vscode/blob/master/docs/debugging-python-lambda-functions.md
+### VSCode 开发环境
 
-cd ${project_root}
+主要参考文章: https://github.com/aws/aws-toolkit-vscode/blob/master/docs/debugging-python-lambda-functions.md
 
-#初始化虚拟环境
-python3 -m venv ./.venv
+  cd ${project_root}
 
-#激活虚拟环境
+ - 初始化虚拟环境
+  python3 -m venv ./.venv
+
+ - 激活虚拟环境
 . ./.venv/bin/activate
 
-#其中的requirements.txt,添加了最新版本的ptvsd, 发现ptvsd==4.2.4其实是有问题的,最新版本是4.3.2
+ - 其中的requirements.txt,添加了最新版本的ptvsd, 发现ptvsd==4.2.4其实是有问题的,最新版本是4.3.2
 
-#安装依赖
-python3 -m pip install -r ${workspace}/vscode/hello_world/requirements.txt
-python3 -m pip install -r /Users/dev_local/Documents/Project/aws/vscode/vscode/hello_world/requirements.txt
+ - 安装依赖
+ 
+ ```
+   python3 -m pip install -r ${workspace}/vscode/hello_world/requirements.txt
+   python3 -m pip install -r /Users/dev_local/Documents/Project/aws/vscode/vscode/hello_world/requirements.txt
+```
 
-#编译项目,每次修改代码,都要手动执行编译,不然断点位置不对
-sam build
+ - 编译项目,每次修改代码,都要手动执行编译,不然断点位置不对
 
-#启动项目,开启debug端口5678,等待连接
-sam local invoke -e events/event.json HelloWorldFunction -d 5678
+    sam build
 
-#按F5进行编译,代码将停止在断点位置.
+ - 启动项目,开启debug端口5678,等待连接
+
+    sam local invoke -e events/event.json HelloWorldFunction -d 5678
+
+ - 按F5进行编译,代码将停止在断点位置.
+
 <sam app root>/.vscode/launch.json 里面的路径映射貌似不对,会报以下错误:
         pydev debugger: unable to find translation for: "/Users/dev_local/Documents/Project/aws/vscode/vscode/hello_world/app.py" in ["/Users/dev_local/Documents/Project/aws/vscode/hello_world/build"] (please revise your path mappings).
 
